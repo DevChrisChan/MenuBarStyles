@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MenuBarStyles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    body {
+        font-weight: 500;
+        text-align: center !important;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont;
+        background: linear-gradient(to right, #f6d365, #fda085);
+    }
+
+    canvas {
+        display: none;
+        max-width: 80%;
+        height: auto;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        margin: 0 auto;
+    }
+
+    .btn {
+        border: none;
+        padding: 0.8em 2.5em;
+        outline: none;
+        color: white;
+        font-style: 1.2em;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        background: none;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn:before,
+    .btn:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10em;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 105%;
+        height: 105%;
+        content: "";
+        z-index: -2;
+        background-size: 400% 400%;
+        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    }
+
+    .btn:before {
+        -webkit-filter: blur(7px);
+        filter: blur(7px);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+        -webkit-animation: pulse 10s infinite ease;
+        animation: pulse 10s infinite ease;
+    }
+
+    .btn:after {
+        -webkit-filter: blur(0.3px);
+        filter: blur(0.3px);
+    }
+
+    .btn:hover:before {
+        width: 115%;
+        height: 115%;
+    }
+
+    h1 {
+        font-size: 3em;
+        font-weight: bold;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+        font-weight: normal;
+        margin-bottom: 3em;
+    }
+</style>
+
+<body>
+    <h1 style="font-weight: 900;">MenuBarStyles</h1>
+    <h2 style="font-weight: 700;">Style up your Mac Menu Bar!</h2>
+    <!--<img src="/1.jpg" style="width: 50%; border-radius: 10px!important; padding-bottom: 5%;">-->
+    <p>Step 1: Choose colors for your Menu Bar gradient</p>
+    <input type="color" id="color-picker-1" value="#ff0000">
+    <input type="color" id="color-picker-2" value="#00ff00">
+    <br>
+    <p>Step 2: Upload your current wallpaper</p>
+    <br>
+    <label for="file-upload" class="btn">Upload Image</label>
+    <input id="file-upload" style="display: none" type="file" accept="image/*" onchange="loadImage()" />
+    <canvas id="canvas"></canvas>
+    <br>
+    <p style="display:none" id="tip">Step 3: Download your wallpaper and set it. Your Menu Bar's gradient will be applied to the top of the image!</p>
+    <button class="btn" style="display:none; margin-left: auto; margin-right: auto" onclick="downloadImage()">Download
+        Image</button>
+    <script>
+       let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+let image = new Image();
+let button = document.querySelector("button");
+let colorPicker1 = document.getElementById("color-picker-1");
+let colorPicker2 = document.getElementById("color-picker-2");
+
+function loadImage() {
+    let file = document.querySelector("input[type=file]").files[0];
+    let reader = new FileReader();
+
+    reader.addEventListener(
+        "load",
+        function () {
+            image.src = reader.result;
+            image.onload = function () {
+                canvas.width = image.width;
+                canvas.height = image.height;
+                let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                gradient.addColorStop(0, colorPicker1.value);
+                gradient.addColorStop(1, colorPicker2.value);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, 45);
+                ctx.drawImage(image, 0, 45);
+                button.style.display = "block";
+                canvas.style.display = "block";
+                tip.style.display = "block";
+            };
+        },
+        false
+    );
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+function downloadImage() {
+    let link = document.createElement("a");
+    link.download = "image.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+}
+
+colorPicker1.addEventListener("input", function () {
+    let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0, colorPicker1.value);
+    gradient.addColorStop(1, colorPicker2.value);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, 45);
+    ctx.drawImage(image, 0, 45);
+});
+
+colorPicker2.addEventListener("input", function () {
+    let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0, colorPicker1.value);
+    gradient.addColorStop(1, colorPicker2.value);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, 45);
+    ctx.drawImage(image, 0, 45);
+});
+	</script>
+</body>
+
+</html>
