@@ -16,7 +16,6 @@
 	<meta name="theme-color" content="#1b2333">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/style.css' rel='stylesheet'>
 	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/info.css' rel='stylesheet'>
 	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/danger.css' rel='stylesheet'>
 	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/dark-mode.css' rel='stylesheet'>
@@ -25,6 +24,275 @@
 <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/favicon/favicon-16x16.png">
 <link rel="manifest" href="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/favicon/site.webmanifest">
 </head>
+<style>
+	html {
+  scroll-behavior: smooth;
+}
+    body {
+			transition: all 1000ms;
+        font-weight: 500;
+        text-align: center !important;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont;
+				/*Old background gradient*/
+        /*background: linear-gradient(to right, #f6d365, #fda085);*/
+			background: linear-gradient(270deg, rgb(14, 17, 17) 11.2%, rgb(16, 37, 60) 51.2%, rgb(36, 30, 57) 98.6%);
+			color: white;
+    }
+
+    canvas {
+        display: none;
+        max-width: 60%;
+        height: auto;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        margin: 0 auto;
+    }
+
+    .btn {
+        border: none;
+        padding: 0.8em 2.5em;
+        outline: none;
+        color: white;
+        font-style: 1.2em;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        background: none;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.30);
+    }
+
+    .btn:before,
+    .btn:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10em;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 105%;
+        height: 105%;
+        content: "";
+        z-index: -2;
+        background-size: 400% 400%;
+        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+			background-size: 200% 200%;
+  animation: gradientbtn 10s ease infinite;
+    }
+	@keyframes gradientbtn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+    .btn:before {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+        -webkit-animation: pulse 10s infinite ease;
+        animation: pulse 10s infinite ease;
+    }
+
+    .btn:after {
+        -webkit-filter: blur(0.3px);
+        filter: blur(0.3px);
+    }
+
+    .btn:hover:before {
+        width: 115%;
+        height: 115%;
+    }
+
+    h1 {
+        font-size: 3em;
+        font-weight: bold;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+        font-weight: normal;
+        margin-bottom: 0.5em;
+    }
+	#box-tip {
+		z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+		border: 2px solid;
+		opacity: 80%;
+		border-radius: 10px;
+		width: 50%;
+		padding: 10px; 
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  bottom: 105%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+	.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+		position: sticky;
+  top: 0px;
+		opacity: 100%;
+		z-index: 999;
+  }
+
+
+  .navbar-text {
+		background: linear-gradient(to right, #8a2387, #e94057, #f27121, #ff0000);
+    background-size: 400% 400%;
+    animation: gradient-bg 3s ease infinite;
+      /*background: linear-gradient(to left, #b92b27, #1565c0);*/
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+  }
+	@keyframes gradient-bg {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+  
+  .navbar-button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .navbar-button:hover {
+    background-color: #3e8e41;
+  }
+	a {
+		all: unset;
+	}
+.faq-question {
+    cursor: pointer;
+    margin: 0;
+    padding: 1em;
+    overflow: hidden;
+	text-align: left
+  }
+  .faq-answer {
+		font-size: 1.1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.75, 0.1, 0.25, 0.9);
+    padding: 0 1em;
+		text-align: left
+  }
+  .faq-answer p {
+    margin: 0;
+    padding: 1em 0;
+  }
+  .faq-question.active {
+    text-decoration: underline;
+  }
+  .faq-question::after {
+    content: '+';
+    float: right;
+  }
+  .faq-question.active::after {
+    content: '-';
+  }
+	.faq-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.faq {
+  width: 100%;
+}
+
+.light {
+	 background: linear-gradient(to left, #acb6e5, #86fde8);
+	color: #070606;
+	transition: all 1000ms;
+}
+
+#droptip {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+}
+
+.circle {
+			display: inline-block;
+			width: 35px;
+			height: 10px;
+			margin-right: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			background: linear-gradient(to right, #fff, #000);
+			background-clip: content-box;
+			padding: 5px;
+			border: 5px solid #efefef;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+	</style>
 <body>
 	<div class="navbar">
     <p style="cursor: pointer;" onclick="location.reload();" class="navbar-text">MenuBarStyles<span style="font-size: 0.5em;"> public beta</span></p>
