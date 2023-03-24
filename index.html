@@ -370,9 +370,41 @@ let colorPicker2 = document.getElementById("color-picker-2");
 let hidden = document.getElementById("box-tip");
 			let content = document.getElementById("content");
 			let doesntwork = document.getElementById("doesntwork");
-			let tiptip = document.getElementById("tiptip");
 
+function loadImage() {
+    let file = document.querySelector("input[type=file]").files[0];
+    let reader = new FileReader();
 
+    reader.addEventListener(
+        "load",
+        function () {
+            image.src = reader.result;
+            image.onload = function () {
+							window.scrollTo(0, 0);
+                canvas.width = image.width;
+                canvas.height = image.height;
+                let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                gradient.addColorStop(0, colorPicker1.value);
+                gradient.addColorStop(1, colorPicker2.value);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, 30);
+                ctx.drawImage(image, 0, 30);
+                button.style.display = "block";
+                canvas.style.display = "block";
+							doesntwork.style.display = "block";
+                colorPicker1.style.display = "initial";
+                colorPicker2.style.display = "initial";
+                hidden.style.display = "none"; 
+							content.style.marginTop = "1vh";
+            };
+        },
+        false
+    );
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
 
 function downloadImage() {
     let link = document.createElement("a");
@@ -402,51 +434,77 @@ colorPicker2.addEventListener("input", function () {
 let box = document.getElementById("box-tip");
 let droparea = document.getElementById("droparea");
 let droptip = document.getElementById("droptip");
-let body = document.querySelector("body");
-
-droparea.addEventListener("dragenter", function(e) {
+			
+			droparea.addEventListener("dragenter", function(e) {
   e.preventDefault();
-  let fileType = e.dataTransfer.files[0].type;
-  if (fileType === "image/png" || fileType === "image/jpeg") {
-    droptip.textContent = "Drop your file here";
-    droptip.style.display = "block";
-  } else {
-    droptip.textContent = "Unsupported filetype";
-    droptip.style.display = "block";
-  }
-});
-
-droparea.addEventListener("ondragover", function(e) {
-  e.preventDefault();
-  let fileType = e.dataTransfer.files[0].type;
-  if (fileType !== "image/png" && fileType !== "image/jpeg") {
-    droptip.textContent = "Unsupported filetype";
-    droptip.style.display = "block";
-  }
+				droptip.style.display = "block"
 });
 
 droparea.addEventListener("dragleave", function(e) {
   e.preventDefault();
-  droptip.style.display = "none";
+	droptip.style.display = "block"
 });
 
 droparea.addEventListener("dragover", function(e) {
   e.preventDefault();
-  droptip.style.display = "block";
+	droptip.style.display = "block"
+
 });
 
 droparea.addEventListener("drop", function(e) {
   e.preventDefault();
   let file = e.dataTransfer.files[0];
   loadImageFile(file);
+	
 });
-
-droparea.addEventListener("dragend", function(e) {
+box.addEventListener("dragenter", function(e) {
   e.preventDefault();
-  droptip.style.display = "none";
+  box.style.borderStyle = "dashed";
 });
 
+box.addEventListener("dragleave", function(e) {
+  e.preventDefault();
+  box.style.borderStyle = "dashed";
+});
 
+box.addEventListener("dragover", function(e) {
+  e.preventDefault();
+});
+
+box.addEventListener("drop", function(e) {
+  e.preventDefault();
+  let file = e.dataTransfer.files[0];
+  loadImageFile(file);
+});
+
+function loadImageFile(file) {
+	window.scrollTo(0, 0);
+  let reader = new FileReader();
+  reader.addEventListener("load", function() {
+    image.src = reader.result;
+    image.onload = function() {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      gradient.addColorStop(0, colorPicker1.value);
+      gradient.addColorStop(1, colorPicker2.value);
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, 30);
+      ctx.drawImage(image, 0, 30);
+      button.style.display = "block";
+      canvas.style.display = "block";
+      doesntwork.style.display = "block";
+      colorPicker1.style.display = "initial";
+      colorPicker2.style.display = "initial";
+      hidden.style.display = "none"; 
+      content.style.marginTop = "1vh";
+			droptip.style.display = "none"
+			document.body.style.backgroundColor = "initial"
+				document.body.style.opacity = "initial"
+    };
+  }, false);
+  reader.readAsDataURL(file);
+}
 const faqQuestions = document.querySelectorAll('.faq-question');
 
   faqQuestions.forEach(question => {
