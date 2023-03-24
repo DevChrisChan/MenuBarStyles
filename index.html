@@ -16,10 +16,10 @@
 	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/info.css' rel='stylesheet'>
 	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/danger.css' rel='stylesheet'>
 	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/dark-mode.css' rel='stylesheet'>
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/favicon/site.webmanifest">
 </head>
 <style>
 	html {
@@ -314,16 +314,16 @@
     <div id="content" style="margin-top: 70vh;">
 			 <h1 style="font-size: 2em; font-weight: 900;">Stunning Menu Bars</h1>
 			<h2 style="font-weight: 700">Make your Menu Bar stand out from others</h2>
-			<img src="/1.jpg" style="width: 80%; border-radius: 13px!important;">
+			<img src="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/1.jpg" style="width: 80%; border-radius: 13px!important;">
 			<h2 style="font-weight: 700">... while keeping your original wallpaper</h2>
-			<img src="/2.png" style="width: 80%; border-radius: 13px!important;">
+			<img src="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/2.png" style="width: 80%; border-radius: 13px!important;">
 			<h1 style="font-size: 2em; font-weight: 900; margin-top: 10vh;">Pro Tips</h1>
 			<div class="faq-container">
   <div class="faq">
     <h3 class="faq-question">Animated Gradient Menu Bar</h3>
     <div class="faq-answer">
-			<center><img src="/1.gif" style="width: 80%; border-radius: 13px!important;"></center>
-     <center><img src="/3.png" style="width: 80%; border-radius: 13px!important;"></center>
+			<center><img src="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/1.gif" style="width: 80%; border-radius: 13px!important;"></center>
+     <center><img src="https://raw.githubusercontent.com/DevChrisChan/MenuBarStyles/main/3.png" style="width: 80%; border-radius: 13px!important;"></center>
 			<p>Repeat the process of adding wallpapers with different gradients on your Menu Bar. Set Auto-Rotate for Every 5 Seconds, and see the magic.</p>
     </div>
 	</div>
@@ -372,41 +372,7 @@ let hidden = document.getElementById("box-tip");
 			let doesntwork = document.getElementById("doesntwork");
 			let tiptip = document.getElementById("tiptip");
 
-function loadImage() {
-    let file = document.querySelector("input[type=file]").files[0];
-    let reader = new FileReader();
 
-    reader.addEventListener(
-        "load",
-        function () {
-					window.scrollTo(0, 0);
-            image.src = reader.result;
-            image.onload = function () {
-                canvas.width = image.width;
-                canvas.height = image.height;
-                let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                gradient.addColorStop(0, colorPicker1.value);
-                gradient.addColorStop(1, colorPicker2.value);
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, 30);
-                ctx.drawImage(image, 0, 30);
-                button.style.display = "block";
-                canvas.style.display = "block";
-							doesntwork.style.display = "block";
-                colorPicker1.style.display = "initial";
-                colorPicker2.style.display = "initial";
-							tiptip.style.display = "initial";
-                hidden.style.display = "none"; 
-							content.style.marginTop = "1vh";
-            };
-        },
-        false
-    );
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-}
 
 function downloadImage() {
     let link = document.createElement("a");
@@ -480,34 +446,7 @@ droparea.addEventListener("dragend", function(e) {
   droptip.style.display = "none";
 });
 
-function loadImageFile(file) {
-	window.scrollTo(0, 0);
-  let reader = new FileReader();
-  reader.addEventListener("load", function() {
-    image.src = reader.result;
-    image.onload = function() {
-      canvas.width = image.width;
-      canvas.height = image.height;
-      let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      gradient.addColorStop(0, colorPicker1.value);
-      gradient.addColorStop(1, colorPicker2.value);
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, 30);
-      ctx.drawImage(image, 0, 30);
-      button.style.display = "block";
-      canvas.style.display = "block";
-      doesntwork.style.display = "block";
-      colorPicker1.style.display = "initial";
-      colorPicker2.style.display = "initial";
-      hidden.style.display = "none"; 
-      content.style.marginTop = "1vh";
-			droptip.style.display = "none"
-			document.body.style.backgroundColor = "initial"
-				document.body.style.opacity = "initial"
-    };
-  }, false);
-  reader.readAsDataURL(file);
-}
+
 const faqQuestions = document.querySelectorAll('.faq-question');
 
   faqQuestions.forEach(question => {
