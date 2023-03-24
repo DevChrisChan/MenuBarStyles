@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLYP4FND09"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -12,19 +13,32 @@
 </script>
     <title>MenuBarStyles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/info.css' rel='stylesheet'>
+	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/danger.css' rel='stylesheet'>
+	<link href='https://unpkg.com/css.gg@2.0.0/icons/css/dark-mode.css' rel='stylesheet'>
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
 </head>
 <style>
+	html {
+  scroll-behavior: smooth;
+}
     body {
+			transition: all 1000ms;
         font-weight: 500;
         text-align: center !important;
         font-family: -apple-system, system-ui, BlinkMacSystemFont;
-        background: linear-gradient(to right, #f6d365, #fda085);
+				/*Old background gradient*/
+        /*background: linear-gradient(to right, #f6d365, #fda085);*/
+			background: linear-gradient(270deg, rgb(14, 17, 17) 11.2%, rgb(16, 37, 60) 51.2%, rgb(36, 30, 57) 98.6%);
+			color: white;
     }
 
     canvas {
         display: none;
-        max-width: 80%;
+        max-width: 60%;
         height: auto;
         padding-top: 3%;
         padding-bottom: 3%;
@@ -41,7 +55,7 @@
         z-index: 1;
         cursor: pointer;
         background: none;
-        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.30);
     }
 
     .btn:before,
@@ -58,11 +72,24 @@
         z-index: -2;
         background-size: 400% 400%;
         background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+			background-size: 200% 200%;
+  animation: gradientbtn 10s ease infinite;
     }
+	@keyframes gradientbtn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
     .btn:before {
-        -webkit-filter: blur(7px);
-        filter: blur(7px);
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
         -webkit-transition: all 0.25s ease;
         transition: all 0.25s ease;
         -webkit-animation: pulse 10s infinite ease;
@@ -89,27 +116,250 @@
     h2 {
         font-size: 1.2em;
         font-weight: normal;
-        margin-bottom: 3em;
+        margin-bottom: 0.5em;
     }
-</style>
+	#box-tip {
+		z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+		border: 2px solid;
+		opacity: 80%;
+		border-radius: 10px;
+		width: 50%;
+		padding: 10px; 
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  bottom: 105%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+	.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+		position: sticky;
+  top: 0px;
+		opacity: 100%;
+		z-index: 999;
+  }
+
+
+  .navbar-text {
+		background: linear-gradient(to right, #8a2387, #e94057, #f27121, #ff0000);
+    background-size: 400% 400%;
+    animation: gradient-bg 3s ease infinite;
+      /*background: linear-gradient(to left, #b92b27, #1565c0);*/
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+  }
+	@keyframes gradient-bg {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+  
+  .navbar-button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .navbar-button:hover {
+    background-color: #3e8e41;
+  }
+	a {
+		all: unset;
+	}
+.faq-question {
+    cursor: pointer;
+    margin: 0;
+    padding: 1em;
+    overflow: hidden;
+	text-align: left
+  }
+  .faq-answer {
+		font-size: 1.1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.75, 0.1, 0.25, 0.9);
+    padding: 0 1em;
+		text-align: left
+  }
+  .faq-answer p {
+    margin: 0;
+    padding: 1em 0;
+  }
+  .faq-question.active {
+    text-decoration: underline;
+  }
+  .faq-question::after {
+    content: '+';
+    float: right;
+  }
+  .faq-question.active::after {
+    content: '-';
+  }
+	.faq-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.faq {
+  width: 100%;
+}
+
+.light {
+	 background: linear-gradient(to left, #acb6e5, #86fde8);
+	color: #070606;
+	transition: all 1000ms;
+}
+
+#droptip {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+}
+	
+</style>
 <body>
+	<div class="navbar">
+    <p class="navbar-text"><a style="cursor: pointer;" href="/">MenuBarStyles<span style="font-size: 0.5em;"> public beta</span></a></p>
+		<i style="cursor: pointer" onclick="theme()" class="gg-dark-mode"></i>
+    <!--<button class="navbar-button">Support</button>-->
+  </div>
+	<div id="droparea">
+		<h1 id="droptip">Drop your file anywhere</h1>
     <h1 style="font-weight: 900;">MenuBarStyles</h1>
     <h2 style="font-weight: 700;">Style up your Mac Menu Bar!</h2>
-    <!--<img src="/1.jpg" style="width: 50%; border-radius: 10px!important; padding-bottom: 5%;">-->
-    <p>Step 1: Choose colors for your Menu Bar gradient</p>
-    <input type="color" id="color-picker-1" value="#ff0000">
-    <input type="color" id="color-picker-2" value="#00ff00">
-    <br>
-    <p>Step 2: Upload your current wallpaper</p>
-    <br>
-    <label for="file-upload" class="btn">Upload Image</label>
+    <div id="box-tip">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <label for="file-upload" class="btn" style="margin-top: 10px;">Upload Wallpaper</label>
+		<p style="opacity: 50%">or drop the file</p>
+		<p id="howto" style="cursor: pointer; opacity: 50%; text-decoration: underline!important;"><a href="/#q1">How can I find my current wallpaper?</a></p>
+		<div style="display: flex; justify-content: space-between;">
+			<p style="opacity: 50%" class="gg-info"></p>
+		<p style="opacity: 50%; margin-left: 10px;">We won't store your image. All magic are done within the browser!</p>
+		</div>
     <input id="file-upload" style="display: none" type="file" accept="image/*" onchange="loadImage()" />
+  </div>
+</div>
+
+    <input id="file-upload" style="display: none" type="file" accept="image/*" onchange="loadImage()" />
+	<br><br><br>
+		<p id="tiptip" style="display: none;">Choose gradient colours</p>
+		<input type="color" style="display: none;" id="color-picker-1" value="#ff0000">
+    <input type="color" style="display: none;" id="color-picker-2" value="#00ff00">
+		<p id="tiptip" style="display: none;">Or select from templates</p>
+    <br>
+		<p id="tiptip" style="display: none;">Or select from templates</p>
     <canvas id="canvas"></canvas>
     <br>
-    <p style="display:none" id="tip">Step 3: Download your wallpaper and set it. Your Menu Bar's gradient will be applied to the top of the image!</p>
-    <button class="btn" style="display:none; margin-left: auto; margin-right: auto" onclick="downloadImage()">Download
-        Image</button>
+    <button class="btn" style="font-weight: 700;display:none; margin-left: auto; margin-right: auto" onclick="downloadImage()">Download Wallpaper</button>
+		<p id="doesntwork" style="opacity: 50%; display:none;">Doesn't work? Be sure to disable Reduce Transparency in Settings.</p>
+    <div id="content" style="margin-top: 70vh;">
+			 <h1 style="font-size: 2em; font-weight: 900;">Stunning Menu Bars</h1>
+			<h2 style="font-weight: 700">Make your Menu Bar stand out from others</h2>
+			<img src="/1.jpg" style="width: 80%; border-radius: 13px!important;">
+			<h2 style="font-weight: 700">... while keeping your original wallpaper</h2>
+			<img src="/2.png" style="width: 80%; border-radius: 13px!important;">
+			<h1 style="font-size: 2em; font-weight: 900; margin-top: 10vh;">Pro Tips</h1>
+			<div class="faq-container">
+  <div class="faq">
+    <h3 class="faq-question">Animated Gradient Menu Bar</h3>
+    <div class="faq-answer">
+			<center><img src="/1.gif" style="width: 80%; border-radius: 13px!important;"></center>
+     <center><img src="/3.png" style="width: 80%; border-radius: 13px!important;"></center>
+			<p>Repeat the process of adding wallpapers with different gradients on your Menu Bar. Set Auto-Rotate for Every 5 Seconds, and see the magic.</p>
+    </div>
+	</div>
+			</div>
+		</div>
+
+			<h1 style="font-size: 2em; font-weight: 900; margin-top: 10vh;">Frequently Asked Questions</h1>
+			<div class="faq-container">
+  <div class="faq">
+    <h3 id="q1" class="faq-question">Where can I find the path to my current wallpaper?</h3>
+    <div class="faq-answer">
+      <p>To find your current wallpaper, paste this into your terminal:</p>
+      <div class="tooltip">
+        <!--<button class="copy-btn" onclick="copyToClipboard()">-->
+          <!--<span onclick="copyToClipboard()" class="tooltiptext" id="myTooltip">Click to copy to clipboard</span>-->
+          <code>osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)'</code>
+        <!--</button>-->
+      </div>
+      <p>Then, drag and drop the file to the box.</p>
+    </div>
+    <h3 class="faq-question">How is my wallpaper processed? Will you be able to see it?</h3>
+    <div class="faq-answer">
+      <p>Wallpapers uploaded to this site are not sent nor store to anywhere, since the entire process is being done within your browser, using JavaScript. Feel free to check our <a target="_blank" rel="noopener noreferrer" style="cursor:pointer;text-decoration:underline" href="https://github.com/DevChrisChan/MenuBarStyles">Source Code</a>!</p>
+    </div>
+    <h3 class="faq-question">Why am I not able to see the colour selected on my Menu Bar?</h3>
+    <div class="faq-answer">
+      <p>Please disable Reduce Transparency in Settings. If problem persists, please <a target="_blank" rel="noopener noreferrer" style="cursor:pointer;text-decoration:underline" href="https://github.com/DevChrisChan/MenuBarStyles/issues">open an Issue on Github</a>.</p>
+    </div>
+		<h3 class="faq-question">Does this work on my MacBook?</h3>
+    <div class="faq-answer">
+      <p>Yes, this will work on every MacBook. The gradient we placed on your wallpaper will not be seen other than in the Menu Bar.</p>
+    </div>
+  </div>
+</div>
+			<p style="margin-top: 10vh; opacity:80%;">2023 © MenuBarStyles • This website is not affiliated with Apple.</p>
+		</div>
     <script>
        let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
@@ -117,6 +367,10 @@ let image = new Image();
 let button = document.querySelector("button");
 let colorPicker1 = document.getElementById("color-picker-1");
 let colorPicker2 = document.getElementById("color-picker-2");
+let hidden = document.getElementById("box-tip");
+			let content = document.getElementById("content");
+			let doesntwork = document.getElementById("doesntwork");
+			let tiptip = document.getElementById("tiptip");
 
 function loadImage() {
     let file = document.querySelector("input[type=file]").files[0];
@@ -125,6 +379,7 @@ function loadImage() {
     reader.addEventListener(
         "load",
         function () {
+					window.scrollTo(0, 0);
             image.src = reader.result;
             image.onload = function () {
                 canvas.width = image.width;
@@ -133,11 +388,16 @@ function loadImage() {
                 gradient.addColorStop(0, colorPicker1.value);
                 gradient.addColorStop(1, colorPicker2.value);
                 ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, 45);
-                ctx.drawImage(image, 0, 45);
+                ctx.fillRect(0, 0, canvas.width, 30);
+                ctx.drawImage(image, 0, 30);
                 button.style.display = "block";
                 canvas.style.display = "block";
-                tip.style.display = "block";
+							doesntwork.style.display = "block";
+                colorPicker1.style.display = "initial";
+                colorPicker2.style.display = "initial";
+							tiptip.style.display = "initial";
+                hidden.style.display = "none"; 
+							content.style.marginTop = "1vh";
             };
         },
         false
@@ -150,7 +410,7 @@ function loadImage() {
 
 function downloadImage() {
     let link = document.createElement("a");
-    link.download = "image.png";
+    link.download = "MenuBarStyle.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
 }
@@ -160,8 +420,8 @@ colorPicker1.addEventListener("input", function () {
     gradient.addColorStop(0, colorPicker1.value);
     gradient.addColorStop(1, colorPicker2.value);
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, 45);
-    ctx.drawImage(image, 0, 45);
+    ctx.fillRect(0, 0, canvas.width, 30);
+    ctx.drawImage(image, 0, 30);
 });
 
 colorPicker2.addEventListener("input", function () {
@@ -169,9 +429,104 @@ colorPicker2.addEventListener("input", function () {
     gradient.addColorStop(0, colorPicker1.value);
     gradient.addColorStop(1, colorPicker2.value);
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, 45);
-    ctx.drawImage(image, 0, 45);
+    ctx.fillRect(0, 0, canvas.width, 30);
+    ctx.drawImage(image, 0, 30);
 });
+			
+let box = document.getElementById("box-tip");
+let droparea = document.getElementById("droparea");
+let droptip = document.getElementById("droptip");
+let body = document.querySelector("body");
+
+droparea.addEventListener("dragenter", function(e) {
+  e.preventDefault();
+  let fileType = e.dataTransfer.files[0].type;
+  if (fileType === "image/png" || fileType === "image/jpeg") {
+    droptip.textContent = "Drop your file here";
+    droptip.style.display = "block";
+  } else {
+    droptip.textContent = "Unsupported filetype";
+    droptip.style.display = "block";
+  }
+});
+
+droparea.addEventListener("ondragover", function(e) {
+  e.preventDefault();
+  let fileType = e.dataTransfer.files[0].type;
+  if (fileType !== "image/png" && fileType !== "image/jpeg") {
+    droptip.textContent = "Unsupported filetype";
+    droptip.style.display = "block";
+  }
+});
+
+droparea.addEventListener("dragleave", function(e) {
+  e.preventDefault();
+  droptip.style.display = "none";
+});
+
+droparea.addEventListener("dragover", function(e) {
+  e.preventDefault();
+  droptip.style.display = "block";
+});
+
+droparea.addEventListener("drop", function(e) {
+  e.preventDefault();
+  let file = e.dataTransfer.files[0];
+  loadImageFile(file);
+});
+
+droparea.addEventListener("dragend", function(e) {
+  e.preventDefault();
+  droptip.style.display = "none";
+});
+
+function loadImageFile(file) {
+	window.scrollTo(0, 0);
+  let reader = new FileReader();
+  reader.addEventListener("load", function() {
+    image.src = reader.result;
+    image.onload = function() {
+      canvas.width = image.width;
+      canvas.height = image.height;
+      let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      gradient.addColorStop(0, colorPicker1.value);
+      gradient.addColorStop(1, colorPicker2.value);
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, 30);
+      ctx.drawImage(image, 0, 30);
+      button.style.display = "block";
+      canvas.style.display = "block";
+      doesntwork.style.display = "block";
+      colorPicker1.style.display = "initial";
+      colorPicker2.style.display = "initial";
+      hidden.style.display = "none"; 
+      content.style.marginTop = "1vh";
+			droptip.style.display = "none"
+			document.body.style.backgroundColor = "initial"
+				document.body.style.opacity = "initial"
+    };
+  }, false);
+  reader.readAsDataURL(file);
+}
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      question.classList.toggle('active');
+      const answer = question.nextElementSibling;
+      if (question.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      } else {
+        answer.style.maxHeight = 0;
+      }
+    });
+  });
+function theme() {
+   var element = document.body;
+	var logo = document.querySelectorAll('navbar-text');
+   element.classList.toggle("light");
+	logo.style.backgroundColor("linear-gradient(to left, #b92b27, #1565c0);")
+}
 	</script>
 </body>
 
